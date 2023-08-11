@@ -1,6 +1,7 @@
 class Vtclean < Formula
   desc "Tool for cleaning up terminal output"
-  url "https://github.com/lunixbochs/vtclean"
+  url "https://github.com/lunixbochs/vtclean.git",
+      :tag => "v1.0.0"
 
   depends_on "go" => :build
 
