@@ -1,4 +1,4 @@
-class Re2Orca < Formula
+class Re2 < Formula
   desc "Alternative to backtracking PCRE-style regular expression engines"
   homepage "https://github.com/google/re2"
   url "https://github.com/google/re2/archive/refs/tags/2022-12-01.tar.gz"
