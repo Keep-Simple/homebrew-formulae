@@ -1,7 +1,7 @@
 class SpotifyPlayer < Formula
   desc "Command driven Spotify player"
   homepage "https://github.com/aome510/spotify-player"
-  head "https://github.com/aome510/spotify-player.git", branch: :master
+  head "https://github.com/aome510/spotify-player.git", branch: => "master"
 
   depends_on "rust" => :build
   uses_from_macos "expect" => :test
