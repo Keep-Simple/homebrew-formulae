@@ -1,7 +1,7 @@
 class SpotifyPlayer < Formula
-  desc "Command driven spotify player"
+  desc "Command driven Spotify player"
   homepage "https://github.com/aome510/spotify-player"
-  head "https://github.com/aome510/spotify-player.git"
+  head "https://github.com/aome510/spotify-player.git", branch: :master
 
   depends_on "rust" => :build
   uses_from_macos "expect" => :test
@@ -18,7 +18,7 @@ class SpotifyPlayer < Formula
     ENV["OPENSSL_DIR"] = Formula["openssl@3"].opt_prefix
     ENV["OPENSSL_NO_VENDOR"] = "1"
 
-    system "cargo", "install", "--features", "lyric-finder", *std_cargo_args(path: "spotify_player")
+    system "cargo", "install", "--features", "lyric-finder,image", *std_cargo_args(path: "spotify_player")
     bin.install "target/release/spotify_player"
   end
 
