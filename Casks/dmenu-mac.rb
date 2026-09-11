@@ -13,11 +13,12 @@ cask "dmenu-mac" do
   end
 
   app "dmenu-mac.app"
-  # Upstream ships Contents/Resources/dmenu-mac, a wrapper script that resolves the
-  # bundle path with `python -c ...`. macOS 12.3 removed Python 2, so that wrapper
-  # dies with "python: command not found" and never reaches the real binary.
-  # Upstream is unmaintained (0.7.2, 2021), so link the Mach-O the wrapper targets.
-  binary "#{appdir}/dmenu-mac.app/Contents/MacOS/dmenu-mac"
+  # No binary stanza on purpose. Upstream ships Contents/Resources/dmenu-mac, a
+  # launcher script that resolves the bundle path with `python -c ...`; macOS 12.3
+  # removed Python 2, so it dies with "python: command not found". Symlinking
+  # Contents/MacOS/dmenu-mac instead is worse: the process starts, but resolves its
+  # bundle relative to the symlink, never loads Main.storyboard, and shows no window.
+  # Upstream is unmaintained (0.7.2, 2021). Launch the app with `open` instead.
 
   zap trash: [
     "~/Library/Application Scripts/com.onaips.dmenu-macos",
