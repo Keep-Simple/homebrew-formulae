@@ -13,7 +13,11 @@ cask "dmenu-mac" do
   end
 
   app "dmenu-mac.app"
-  binary "#{appdir}/dmenu-mac.app/Contents/Resources/dmenu-mac"
+  # Upstream ships Contents/Resources/dmenu-mac, a wrapper script that resolves the
+  # bundle path with `python -c ...`. macOS 12.3 removed Python 2, so that wrapper
+  # dies with "python: command not found" and never reaches the real binary.
+  # Upstream is unmaintained (0.7.2, 2021), so link the Mach-O the wrapper targets.
+  binary "#{appdir}/dmenu-mac.app/Contents/MacOS/dmenu-mac"
 
   zap trash: [
     "~/Library/Application Scripts/com.onaips.dmenu-macos",
